@@ -46,11 +46,29 @@ test('TC002 - Verify Drag and Drop', async ({ page }) => {
   const columnA = page.locator('#column-a');
   const columnB = page.locator('#column-b');
 
-  await columnA.dragTo(columnB);
+  // Ensure elements are not null
+  const source = await columnA.elementHandle();
+  const target = await columnB.elementHandle();
+
+  if (source && target) {
+    // Perform drag and drop using JavaScript
+    await page.evaluate(([src, tgt]) => {
+      const dataTransfer = new DataTransfer();
+      const dragStartEvent = new DragEvent('dragstart', { dataTransfer });
+      const dropEvent = new DragEvent('drop', { dataTransfer });
+      const dragEndEvent = new DragEvent('dragend', { dataTransfer });
+
+      src.dispatchEvent(dragStartEvent);
+      tgt.dispatchEvent(dropEvent);
+      src.dispatchEvent(dragEndEvent);
+    }, [source, target]);
 
   // Verify the expected results
   await expect(columnA).toHaveText('B');
   await expect(columnB).toHaveText('A');
+}else {
+  throw new Error('Drag and drop elements not found');
+}
 });
 
 
@@ -238,10 +256,3 @@ test('TC008 - Verify prompt dialog', async ({ page }) => {
   const resultMessage = page.locator('#demo');
   await expect(resultMessage).toHaveText(`Hello ${your_name}! How are you today?`);
 });
-
-
-
-
-
-
-
