@@ -6,7 +6,7 @@
 # Run Playwright Workshop Assignment
 1. Open terminal from VS
 1. Install Playwright: npm init playwright@latest
-2. Run tc session3:
-   Chrome: npx playwright test <filename>.spec.ts --project=chrome --headed
-   Firefox: npx playwright test <filename>.spec.ts --project=firefox --headed
-   Safari: npx playwright test <filename>.spec.ts --project=webkit --headed
+2. Run tc of a session:
+   Chrome: npx playwright test <sessionnumber>.spec.ts --project=chrome --headed
+   Firefox: npx playwright test <sessionnumber>.spec.ts --project=firefox --headed
+   Safari: npx playwright test <sessionnumber>.spec.ts --project=webkit --headed
