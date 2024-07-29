@@ -34,7 +34,7 @@ test('TC002 - Verify user can order product successfully', async ({ page }) => {
 
   // Checkout process
   await cartPage.checkout();
-  await checkoutPage.fillCheckoutInfo('John', 'Doe', '12345');
+  await checkoutPage.fillCheckoutInfo('Tam', 'Nguyen', '2442');
   await checkoutPage.finishCheckout();
 
   // Verify thank you message
